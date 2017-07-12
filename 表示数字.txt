@@ -1,0 +1,31 @@
+ package huaweioj;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+StringBuilder stringbulider =new StringBuilder();
+		scanner.close();
+		input = "X"+input+"X";
+		for (int i =0;i<input.length()-1;i++){
+			if((!isNum(input.charAt(i)) && isNum(input.charAt(i+1)))
+				|| (isNum(input.charAt(i)) && !isNum(input.charAt(i+1))))
+				stringbulider.append(input.charAt(i)).append("*");
+			else
+				stringbulider.append(input.charAt(i));
+		}
+		System.out.println(stringbulider.substring(1));
+				
+	}
+
+	public static boolean isNum(char ch){
+		if (ch>='0' && ch<='9')
+			return true;
+		else 
+			return false;
+		
+	}
+}

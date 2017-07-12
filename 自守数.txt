@@ -1,0 +1,32 @@
+#include<stdio.h>  
+ 
+int isAutomorphicNumber(int m);  
+int main()  
+{     
+    int m;  
+    while(scanf("%d",&m)!=EOF) { 
+        int cnt=0;
+    for(int i=0;i<m;i++){  
+        if(isAutomorphicNumber(i)==1)  
+            cnt++;  }
+    printf("%d\n",cnt); } 
+    return 0;  
+}  
+int isAutomorphicNumber(int m)  
+{  
+      
+    if(m==0)  
+        return 1;  
+    else  
+    {  
+        int sq=m*m;  
+        while(m!=0)  
+        {  
+            if(m%10!=sq%10)  
+                return 0;  
+            m/=10;  
+            sq/=10;  
+        }  
+        return 1;  
+    }  
+}  

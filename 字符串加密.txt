@@ -1,0 +1,41 @@
+#include <iostream>  
+#include <string>  
+#include <vector>  
+using namespace std;  
+int main()  
+{  
+    string key;  
+    while (cin >> key)  
+        {  
+    string str;  
+    cin >> str;  
+    vector <char> vec;  
+    int a[26] = { 0 };  
+    //去除key重复的元素  
+    for (int i = 0; i < key.length();i++)  
+    {  
+        char temp = toupper(key[i]);  
+        if (a[temp - 'A'] == 0)  
+        {  
+            vec.push_back(temp);  
+            a[temp - 'A'] = 1;  
+        }  
+    }  
+    //将剩余的字母放进vevtor，和可以一起组成密钥  
+    for (int i = 0; i < 26; i++)  
+    {  
+        if (a[i] == 0)  
+            vec.push_back(i + 'A');  
+    }  
+    //输出变换后的字母  
+    for (int i = 0; i < str.length(); i++)  
+    {  
+        if (islower(str[i]))  
+            str[i] = vec[str[i] - 'a'] + 32;  
+        else  
+            str[i] = vec[str[i] - 'A'];  
+    }  
+    cout << str << endl;  
+    }  
+    return 0;  
+} 

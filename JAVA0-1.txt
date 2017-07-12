@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+int fun(int i,int count,int num[],int result,int sum){
+    if(i==count){
+        if(fabs(result)==sum){
+            return 1;
+        }
+        else
+            return 0;
+    }
+    else
+       return (fun(i+1,count,num,result+num[i],sum)||fun(i+1,count,num,result-num[i],sum)); 
+}
+
+
+int main(){
+    int n=0;
+    while(scanf("%d",&n)!=EOF){
+        int num[100]={0};
+        int sum1=0;
+        int sum2=0;
+        int count=0;
+        for(int i=0;i<n;i++){
+            int temp=0;
+            scanf("%d",&temp);
+            if(temp%5==0){
+                sum1=sum1+temp;
+            }
+            else if(temp%3==0){
+                sum2=sum2+temp;
+            }
+            else
+                num[count++]=temp;
+            
+        }
+        int sum=fabs(sum1-sum2);
+        int k=fun(0,count,num,0,sum);
+        if(k==1){
+            printf("true\n");
+        }
+        if(k==0){
+            printf("false\n");
+        }
+    }
+    
+    
+    return 0;
+}

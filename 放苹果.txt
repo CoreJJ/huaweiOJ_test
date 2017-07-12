@@ -1,0 +1,21 @@
+#include<stdio.h>  
+
+int place_apple(int m, int n);
+int main()
+{
+	int m = 0;
+	int n = 0;
+	scanf_s("%d", &m);
+	scanf_s("%d", &n);
+	printf("%d", place_apple(m, n));
+	return 0;
+}
+int place_apple(int m, int n)
+{
+	if (m == 0 || n == 1)
+		return 1;
+	if (m<n)
+		return place_apple(m, m);
+	else
+		return place_apple(m - n, n) + place_apple(m, n - 1);
+}

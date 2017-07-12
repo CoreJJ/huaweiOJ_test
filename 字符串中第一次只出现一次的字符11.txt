@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+#include<memory.h>
+#define M 50
+int main() {
+	
+	char ch[M] = { 0 };
+	while(scanf("%s",&ch)!=EOF){
+    int str[256] = { 0 };
+	memset(str, 0, 256);
+	int len = strlen(ch);
+    int k=0;
+	for (int i = 0; i < len; i++)
+	{
+		str[ch[i]]++;
+	}
+	for (int i = 0; i < len; i++)
+	{
+		if (str[ch[i]] == 1) {
+            k=1;
+			printf("%c\n", ch[i]);
+            
+			break;
+		}
+	}
+    if (k==0){
+        printf("-1\n");
+    }
+	
+    }
+
+	return 0;
+}

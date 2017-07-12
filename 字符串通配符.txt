@@ -1,0 +1,57 @@
+#include <iostream>  
+#include <string>  
+#include <cctype>  
+  
+using namespace std;  
+  
+  
+bool ismatch(string& s1,string& s2,string::size_type i,string::size_type j)  
+{  
+    while(i<s1.size(),j<s2.size())  
+    {  
+        if(s1[i]=='?')  
+        {  
+            ++i;  
+            ++j;  
+            continue;  
+        }  
+        if(s1[i]!='*')  
+        {  
+            if(toupper(s1[i])!=toupper(s2[j]))  
+                return false;  
+            else  
+            {  
+                ++i;  
+                ++j;  
+                continue;  
+            }  
+        }  
+        if(s1[i]=='*')  
+        {  
+            if(i==s1.size()-1)  
+                return true;  
+            for(string::size_type k=j;k<s2.size();k++)  
+            {  
+                if(ismatch(s1,s2,i+1,k))  
+                    return true;  
+            }  
+            return false;  
+        }  
+    }  
+    if(i!=s1.size()||j!=s2.size())  
+        return false;  
+    return true;  
+}  
+  
+int main()  
+{  
+    string str1,str2;  
+    while(cin>>str1>>str2)  
+    {  
+        if(ismatch(str1,str2,0,0))  
+            cout<<"true"<<endl;  
+        else  
+            cout<<"false"<<endl;  
+    }  
+    return 0;  
+}  

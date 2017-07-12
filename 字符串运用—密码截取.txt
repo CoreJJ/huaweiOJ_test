@@ -1,0 +1,23 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            String str=sc.nextLine();
+            System.out.println(getNum(str));
+ }
+        }
+    public static int getNum(String str){
+                    StringBuffer sb=new StringBuffer(str);
+            String temp=sb.reverse().toString();
+            for(int i=temp.length();i>=1;i--){
+                for(int j=0;j<=temp.length()-i;j++){
+                    if(str.contains(temp.substring(j,j+i))){
+                        return i;
+                    }
+                }
+           
+            }
+        return 0;
+    }
+}

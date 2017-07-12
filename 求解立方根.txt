@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main(){
+    double n=0;
+    while(scanf("%lf",&n)!=EOF){
+        double i=0;
+        int flag=0;
+        if(n<0){
+            n=-n;
+            flag=1;
+        }
+        for(i=0;i*i*i<=n;i=i+0.001);
+        if(flag==0){
+            printf("%.1f\n",i);
+        }
+        if(flag==1){
+            printf("%.1f\n",-i);
+        }
+        
+        
+    }    
+    
+    return 0;
+}

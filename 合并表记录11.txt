@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int n=sc.nextInt();
+           Map<Integer,Integer> map=new TreeMap<>();
+            int temp=0;
+            for(int i=0;i<n;i++){
+                int keys=sc.nextInt();
+                int values=sc.nextInt();
+                if(map.containsKey(keys)){
+                    temp=map.get(keys)+values;
+                    map.put(keys,temp);
+                }
+                else{
+                    map.put(keys,values);
+                }
+            }
+            for(Integer key:map.keySet()){
+                System.out.println(key+" "+map.get(key));
+            }
+        }
+        sc.close();
+    }
+}

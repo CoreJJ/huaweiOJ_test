@@ -1,0 +1,46 @@
+#include <iostream>  
+#include <string>  
+#include <cstring>  
+using namespace std;  
+  
+int max(int letter[],int length){  //找数组中最大的数，找到后赋0  
+    int temp = -1;  
+    int j = -1;  
+    for(int i=0;i<length;i++){  
+        if(letter[i] > temp){  
+            temp = letter[i];  
+            j = i;  
+        }  
+    }  
+    letter[j] = 0;  
+    return temp;  
+}  
+  
+int main(){  
+    int N;  
+    while(cin>>N){ 
+    char str[200];  
+    int letter[26];  //记录每一个字母的出现次数  
+    for(int i=0;i<N;i++){  
+        cin>>str[i];  
+    }  
+    for(int i=0;i<N;i++){  
+        memset(letter,0,sizeof(letter));  
+        for(int j=0;j<str[i].length();j++){  
+            if(str[i][j] >= 'a' && str[i][j] <= 'z')  
+                letter[str[i][j]-'a']++;  
+            else  
+                letter[str[i][j]-32-'a']++;  
+        }  
+        int score = 0;  
+        int c = 26;  
+        int te = 0;  
+        while((te = max(letter,26))!=0){  
+            score += te*c;  
+            c--;  
+        }  
+        cout<<score<<endl;  
+    } 
+    }
+    return 0;  
+}  

@@ -1,0 +1,80 @@
+#include <iostream>  
+#include <string>  
+#include <cctype>  
+  
+using namespace std;  
+  
+void sort( string& word, int old );  
+void ProcessString( string& word );  
+  
+int main( void )  
+{  
+    string word1, word2;  
+    while(cin >> word1 >> word2){ 
+    word1.append( word2 );  
+    sort( word1, 0 );  
+    sort( word1, 1 );  
+    ProcessString( word1 );  
+  
+    cout << word1 << endl;  
+  
+    }
+    return 0;  
+}  
+  
+void sort( string& word, int old )  
+{  
+    char tmp;  
+    int nMax;  
+    for( nMax = old; nMax < word.length(); nMax += 2 )  
+        ;  
+    nMax -= 2;  
+  
+    for( int i = nMax; i > old; i -= 2 ){  
+        bool flag = false;  
+        for( int j = old; j < i; j += 2 ){  
+            if( word[j] > word[j + 2] ){  
+                tmp = word[j];  
+                word[j] = word[j + 2];  
+                word[j + 2] = tmp;  
+                flag = true;  
+            }  
+        }  
+        if( !flag )  
+            break;  
+    }  
+}  
+  
+void ProcessString( string& word )  
+{  
+    char ch1, ch2, bit, bFlag;  
+  
+    for( string::iterator it = word.begin();   
+        it != word.end(); ++it ){  
+        ch2 = 0;  
+        bit = 1;  
+        bFlag = 1;  
+        if( isdigit( *it ) ){  
+            ch1 = *it - '0';  
+        }else if( *it >= 'a' && *it <= 'f' ){  
+            ch1 = *it - 'a' + 10;  
+        }else if( *it >= 'A' && *it <= 'F' ){  
+            ch1 = *it - 'A' + 10;  
+        }else{  
+            bFlag = 0;  
+        }  
+  
+        if( bFlag ){  
+            ch2 |= ( ch1 & ( 1 << 0 ) ) << 3;  
+            ch2 |= ( ch1 & ( 1 << 1 ) ) << 1;  
+            ch2 |= ( ch1 & ( 1 << 2 ) ) >> 1;  
+            ch2 |= ( ch1 & ( 1 << 3 ) ) >> 3;  
+            if( ch2 < 10 ){  
+                *it = '0' + ch2;  
+            }else{  
+                *it = 'A' + ch2 - 10;  
+            }  
+        }  
+    }  
+}  
+

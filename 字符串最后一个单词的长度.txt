@@ -1,0 +1,24 @@
+#include <stdio.h>  
+#include <string.h>  
+  
+ 
+  
+int main()  
+{  
+    char str[129];  
+     
+    
+    gets(str);  
+        int n;  
+        int len; 
+        n=0;  
+        len=strlen(str)-1;  
+        while(str[len]!=' '&&len>=0)  
+        {  
+            n++;  
+            len--;  
+        }  
+        printf("%d\n",n);  
+     
+    return 0;  
+}  

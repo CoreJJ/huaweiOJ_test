@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main{
+public static void main(String[] args){
+	Scanner sc=new Scanner(System.in);
+    while(sc.hasNext()){
+        int n=sc.nextInt();
+        int[] nums=new int[n];
+        int[] weighs=new int[n];
+        for(int i=0;i<n;i++){
+            weighs[i]=sc.nextInt();
+        }
+        for(int j=0;j<n;j++){
+            nums[j]=sc.nextInt();
+        }
+        int result=fun(n,weighs,nums);
+        System.out.println(result);
+    }
+    sc.close();
+}
+public static int fun(int n,int[] weighs,int[] nums){
+    Set<Integer> set=new HashSet<Integer>();
+    for(int i=0;i<=nums[0];i++){
+        set.add(i*weighs[0]);
+    }
+    for(int i=1;i<n;i++){
+        List<Integer> list=new ArrayList<Integer>(set);
+        for(int j=1;j<=nums[i];j++){
+            for(int k=0;k<list.size();k++){
+                set.add(list.get(k)+j*weighs[i]);
+            }
+        }
+    }
+    return set.size();
+}
+}

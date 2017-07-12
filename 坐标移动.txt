@@ -1,0 +1,83 @@
+#include<iostream>  
+#include<string>  
+using namespace std;  
+  
+void GetValue(char N, int num, int &x, int &y)  
+{  
+    switch (N)  
+    {  
+    case 'A':  
+        x -= num;  
+        break;  
+    case 'D':  
+        x += num;  
+        break;  
+    case 'W':  
+        y += num;  
+        break;  
+    case 'S':  
+        y -= num;  
+        break;  
+    default:  
+        break;  
+    }  
+}  
+  
+int main()  
+{  
+    string inStr = "";  
+    string tmp = "";  
+    while(getline(cin ,inStr)){  
+  
+    int i, j, num = 0;  
+    int x = 0, y = 0;  
+    char n = ' ';  
+  
+    for (i = 0; i<inStr.size(); i++)  
+    {  
+        if (inStr[i] == 'A' || inStr[i] == 'S' || inStr[i] == 'W' || inStr[i] == 'D')  
+        {  
+            n = inStr[i];  
+  
+            for (j = i + 1; j<inStr.size(); j++)  
+            {  
+                if (inStr[j] >= '0'&&inStr[j] <= '9')  
+                {  
+                    num = num * 10 + inStr[j] - '0';  
+                }  
+                else  
+                {  
+                    if (inStr[j] == ';')  
+                    {  
+                        GetValue(n, num, x, y);  
+                    }  
+                    else  
+                    {  
+                        while (inStr[j] != ';')  
+                        {  
+                            j++;  
+                        }  
+                    }  
+  
+                    num = 0;  
+  
+                    break;  
+                }  
+            }  
+  
+            i = j;  
+        }  
+        else  
+        {  
+            while (inStr[i] != ';')  
+            {  
+                i++;  
+            }  
+        }  
+  
+    }  
+  
+    cout << x << "," << y << endl;  
+    }
+    return 0;  
+}  

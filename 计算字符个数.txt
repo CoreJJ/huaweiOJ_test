@@ -1,0 +1,44 @@
+#include<iostream>  
+#include<cstring>  
+using namespace std;  
+  
+void change(char *str)  
+{  
+    int i;  
+    for(i=0; str[i]!='\0'; i++)  
+    {  
+        if(str[i]>='a'&&str[i]<='z')  
+            str[i]=str[i]-32;  
+    }  
+}  
+  
+int main()  
+{  
+    char str[512],ch;  
+    int i,count=0,length=0;  
+    cin.getline(str,512);  
+    cin.get(ch);  
+    length=strlen(str);  
+    change(str);  
+    //要求统计的字符是字母，注意大小写  
+    if((ch>='a'&&ch<='z')  || (ch>='A'||ch<='Z'))  
+    {  
+        //待统计的字符为小写，转换成大写，后面可与字符串中的统一比较不再区分大小写  
+        if(ch>='a'&&ch<='z')  
+            ch=ch-32;  
+        for(i=0; i<length; i++)  
+        {  
+            if(str[i]==ch)  
+                count++;  
+        }  
+    }  
+    //其他字符直接判断即可  
+    else  
+    {  
+        for(i=0; i<length; i++)  
+            if(str[i]==ch)  
+                count++;  
+    }  
+    cout<<count<<endl;  
+    return 0;  
+}  

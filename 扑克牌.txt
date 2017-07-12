@@ -1,0 +1,248 @@
+import java.util.*;  
+  
+  
+public class Main{  
+    public static void main(String[] args){  
+        Scanner sc=new Scanner(System.in); 
+        while(sc.hasNext()){
+        String s=sc.nextLine();  
+        String[] as=s.split("-");  
+        String[] AString=as[0].split(" ");  
+        String[] APut=new String[AString.length];  
+        String[] BString=as[1].split(" ");  
+        String[] BPut=new String[BString.length];  
+        int Alen=AString.length;  
+        int Blen=BString.length;  
+          
+        //将要输出的值给put对象  
+        for(int i=0;i<Alen;i++){  
+            APut[i]=AString[i];  
+        }  
+        for(int i=0;i<Blen;i++){  
+            BPut[i]=BString[i];  
+        }  
+          
+        //转换jqka  
+        for(int i=0;i<Alen;i++){  
+            if(AString[i].equals("J"))  
+                AString[i]="11";  
+            if(AString[i].equals("Q"))  
+                AString[i]="12";  
+            if(AString[i].equals("K"))  
+                AString[i]="13";  
+            if(AString[i].equals("A"))  
+                AString[i]="14";  
+            if(AString[i].equals("2"))  
+                AString[i]="15";  
+              
+        }  
+        for(int i=0;i<Blen;i++){  
+            if(BString[i].equals("J"))  
+                BString[i]="11";  
+            if(BString[i].equals("Q"))  
+                BString[i]="12";  
+            if(BString[i].equals("K"))  
+                BString[i]="13";  
+            if(BString[i].equals("A"))  
+                BString[i]="14";  
+            if(BString[i].equals("2"))  
+                BString[i]="15";  
+        }  
+  
+        switch(Alen){  
+            //当一手为1张牌  
+            case 1:{  
+                //二手是王炸  
+                if(Blen==2&&BString[0].equals("joker")&&BString[1].equals("JOKER")){  
+                    System.out.println("joker JOKER");  
+                    break;  
+                }  
+          
+                else if(Blen==2&&BString[0].equals("JOKER")&&BString[1].equals("joker")){  
+                    System.out.println("JOKER joker");  
+                    break;  
+                }  
+                //二手是炸  
+                else if(Blen==4){  
+                    for(int i=0;i<Blen-1;i++)  
+                        System.out.print(BPut[i]+" ");  
+                    System.out.println(BPut[Blen-1]);  
+                    break;  
+                }  
+                else if(Blen==1){  
+                    if(AString[0].equals("JOKER")||BString[0].equals("JOKER")){  
+                        System.out.println("JOKER");  
+                        break;  
+                    }  
+                    if(AString[0].equals("joker")||BString[0].equals("joker")){  
+                        System.out.println("joker");  
+                        break;  
+                    }  
+                      
+                    int cha=Integer.parseInt(AString[0])-Integer.parseInt(BString[0]);  
+                    if(cha>0)  
+                        System.out.println(APut[0]);  
+                    else  
+                        System.out.println(BPut[0]);      
+                    break;  
+                }  
+                else {  
+                    System.out.println("ERROR");  
+                    break;  
+                }  
+            }  
+              
+            case 2:{  
+                //一手是王炸  
+                if(AString[0].equals("joker")&& AString[1].equals("JOKER")){  
+                    System.out.println("joker JOKER");  
+                    break;  
+                }  
+                else if(AString[0].equals("JOKER")&& AString[1].equals("joker")){  
+                    System.out.println("JOKER joker");  
+                    break;  
+                }  
+                //二手是王炸  
+                else if(Blen==2&&BString[0].equals("joker")&&BString[1].equals("JOKER")){  
+                    System.out.println("joker JOKER");  
+                    break;  
+                }  
+          
+                else if(Blen==2&&BString[0].equals("JOKER")&&BString[1].equals("joker")){  
+                    System.out.println("JOKER joker");  
+                    break;  
+                }  
+                //二手是炸  
+                else if(Blen==4){  
+                    for(int i=0;i<Blen-1;i++)  
+                        System.out.print(BPut[i]+" ");  
+                    System.out.println(BPut[Blen-1]);  
+                    break;  
+                }  
+                else if(Blen==2){  
+                    int A=Integer.parseInt(AString[0])+Integer.parseInt(AString[1]);  
+                    int B=Integer.parseInt(BString[0])+Integer.parseInt(BString[1]);  
+                    if(A>B){  
+                        System.out.println(APut[0]+" "+APut[1]);  
+                        break;  
+                    }  
+                    else{  
+                        System.out.println(BPut[0]+" "+BPut[1]);  
+                        break;  
+                    }  
+                }  
+                else {  
+                    System.out.println("ERROR");  
+                    break;  
+                }  
+            }  
+              
+            case 3:{  
+                //二手是王炸  
+                if(Blen==2&&BString[0].equals("joker")&&BString[1].equals("JOKER")){  
+                    System.out.println("joker JOKER");  
+                    break;  
+                }  
+          
+                else if(Blen==2&&BString[0].equals("JOKER")&&BString[1].equals("joker")){  
+                    System.out.println("JOKER joker");  
+                    break;  
+                }  
+                //二手是炸  
+                else if(Blen==4){  
+                    for(int i=0;i<Blen-1;i++)  
+                        System.out.print(BPut[i]+" ");  
+                    System.out.println(BPut[Blen-1]);  
+                    break;  
+                }  
+                else if(Blen==3){  
+                    int A=Integer.parseInt(AString[0])+Integer.parseInt(AString[1])+Integer.parseInt(AString[2]);  
+                    int B=Integer.parseInt(BString[0])+Integer.parseInt(BString[1])+Integer.parseInt(BString[2]);  
+                    if(A>B){  
+                        System.out.println(APut[0]+" "+APut[1]+" "+APut[2]);  
+                        break;  
+                    }  
+                    else {  
+                        System.out.println(BPut[0]+" "+BPut[1]+" "+BPut[2]);  
+                        break;  
+                    }  
+                    }  
+                else {  
+                    System.out.println("ERROR");  
+                    break;  
+                }  
+                }  
+            case 4:{  
+                //二手是王炸  
+                if(Blen==2&&BString[0].equals("joker")&&BString[1].equals("JOKER")){  
+                    System.out.println("joker JOKER");  
+                    break;  
+                }  
+          
+                else if(Blen==2&&BString[0].equals("JOKER")&&BString[1].equals("joker")){  
+                    System.out.println("JOKER joker");  
+                    break;  
+                }  
+                else if(Blen==4){  
+                    int A=Integer.parseInt(AString[0]);  
+                    int B=Integer.parseInt(BString[0]);  
+                    if(A>B){  
+                        System.out.println(APut[0]+" "+APut[0]+" "+APut[0]+" "+APut[0]);  
+                        break;  
+                    }  
+                    else{  
+                        System.out.println(BPut[0]+" "+BPut[0]+" "+BPut[0]+" "+BPut[0]);  
+                        break;  
+                    }  
+                }  
+                else {  
+                    System.out.println("ERROR");  
+                    break;  
+                }     
+            }  
+            case 5:{  
+                //二手是王炸  
+                if(Blen==2&&BString[0].equals("joker")&&BString[1].equals("JOKER")){  
+                    System.out.println("joker JOKER");  
+                    break;  
+                }  
+          
+                else if(Blen==2&&BString[0].equals("JOKER")&&BString[1].equals("joker")){  
+                    System.out.println("JOKER joker");  
+                    break;  
+                }  
+                //二手是炸  
+                else if(Blen==4){  
+                    for(int i=0;i<Blen-1;i++)  
+                        System.out.print(BPut[i]+" ");  
+                    System.out.println(BPut[Blen-1]);  
+                    break;  
+                }  
+                else if(Blen==5){  
+                    int A=Integer.parseInt(AString[0]);  
+                    if(A==14)  
+                        A=1;  
+                    if(A==15)  
+                        A=2;  
+                      
+                    int B=Integer.parseInt(BString[1]);  
+                    if(A>B){  
+                        System.out.println(APut[0]+" "+APut[1]+" "+APut[2]+" "+APut[3]+" "+APut[4]);  
+                        break;  
+                    }  
+                    else{  
+                        System.out.println(BPut[0]+" "+BPut[1]+" "+BPut[2]+" "+BPut[3]+" "+BPut[4]);  
+                        break;  
+                    }  
+                }  
+                else {  
+                    System.out.println("ERROR");  
+                    break;  
+                }  
+            }  
+                  
+        }
+        }
+        }  
+    }  
+

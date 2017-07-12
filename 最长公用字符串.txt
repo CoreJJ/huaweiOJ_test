@@ -1,0 +1,46 @@
+#include<iostream>  
+#include <string.h>  
+#define N 1000   
+using namespace std;  
+  
+int getMaxLength(char *s1,int n1,char *s2,int n2)  
+{  
+    int i = 0, j = 0,max = 0;  
+    for(;s1[i] != '\0';i++)  
+    {  
+        int count = 0;  
+        for(j=0;s2[j]!='\0';j++)  
+        {  
+            int keep1 = i;int keep2 = j;   
+            while(s1[keep1] == s2[keep2]&&keep1<n1&&keep2<n2)  
+            {  
+                 keep1++;  
+                 keep2++;  
+                 count++;  
+            }  
+            if(count>max)  
+                max = count;  
+                count=0;  
+        }  
+         
+    }  
+    return max;   
+}  
+
+int main()  
+{  
+    char s1[N];  
+     
+    while(scanf("%s",&s1)!=EOF){
+     char s2[N]; 
+    scanf("%s",&s2);  
+    int n1 = strlen(s1);  
+    int n2 = strlen(s2);  
+    for(int i = 0;i<n1;i++)  
+        s1[i] = tolower(s1[i]);  
+    for(int i = 0;i<n2;i++)  
+        s2[i] = tolower(s2[i]);  
+    cout<<getMaxLength(s1,n1,s2,n2)<<endl; 
+    }
+    return 0;  
+}  

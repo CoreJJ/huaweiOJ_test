@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main() {
+	int a = 0;
+	while(scanf("%d", &a)!=EOF){
+	int tempsum = 0;
+	int sum = 0;
+	while (a)
+	{
+		int temp = a & 1;
+		if (temp)
+		{
+			tempsum++;
+		}
+		else
+		{
+			tempsum = 0;
+		}
+
+		if (tempsum>sum)
+		{
+			sum = tempsum;
+		}
+        a = a >> 1;
+	}
+	printf("%d\n", sum);
+    }
+	return 0;
+}

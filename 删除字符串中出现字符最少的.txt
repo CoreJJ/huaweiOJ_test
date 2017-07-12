@@ -1,0 +1,30 @@
+#include <iostream>  
+#include <string>  
+using namespace std;  
+int main()  
+{  
+    string str;  
+    while(getline(cin, str))  
+    {    
+        char count[26] = { 0 };  
+        char out[100];  
+        int k = 0;  
+        for (int i = 0; i < str.size(); i++)  
+        {  
+            count[str[i] - 'a']++;  
+        }  
+        int min = count[str[0] - 'a'];//这里min是字符串str的第一个字符出现的次数  
+        for (int i = 0; i<str.size(); i++)  
+        {//这个for循环是用来找出s字符串str中出现次数最小的字符次数是几次，因为有可能最小值对应多个字符，这些都不要  
+            if (count[str[i] - 'a'] <= min)  
+                min = count[str[i] - 'a'];  
+        }  
+        for (int i = 0; i < str.size(); i++)  
+        {//这个for循环是对字符串的每一个字符进行判断，大于min才输出，小于等于不输出  
+            if (count[str[i] - 'a'] > min)  
+                cout << str[i];  
+        }  
+        cout<<endl;  
+    }  
+    return 0;  
+}  

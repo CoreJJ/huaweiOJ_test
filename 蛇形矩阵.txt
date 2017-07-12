@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main(){
+    int n=0;
+    while(scanf("%d",&n)!=EOF){
+        int t=1;
+        for(int i=1;i<=n;i++){
+            printf("%d",t);
+            int b=t;
+            for(int j=1+i;j<=n;j++){
+                b=b+j;
+                printf(" %d", b);
+            }
+            printf("\n");
+            t=t+i;
+        }
+        
+    }
+    
+    
+    
+    
+    
+    return 0;
+}

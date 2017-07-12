@@ -1,0 +1,13 @@
+#include<iostream>
+using namespace std;
+int main() {
+     unsigned a, b, c, d, e;
+     char ch;
+      while (cin>>a>>ch>>b>>ch>>c>>ch>>d) {
+          cin >> e;
+          cout << ((a << 24) | (b << 16) | (c << 8) | d) << endl;
+          cout << ((e & 0xff000000) >> 24) << "." << ((e & 0xff0000) >> 16) << "."
+              << ((e & 0xff00) >> 8) << "." << (e & 0xff) << endl;
+            }
+              return 0;
+}   

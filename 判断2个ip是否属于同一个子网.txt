@@ -1,0 +1,73 @@
+#include<iostream>  
+#include<fstream>  
+#include<string>  
+#include<cstring>  
+#include<cctype>  
+#include<algorithm>  
+#include<cstdlib>  
+using namespace std;  
+  
+typedef struct ip  
+{  
+    int first;  
+    int second;  
+    int three;
+    int fouth;
+} IP;  
+  
+int judgeIp(string ipSubNet,IP &ip)  
+{  
+    int index=0;  
+    ip.first=atoi(&ipSubNet[index]);  
+    if(ip.first>255)  
+        return 0;  
+  
+    index++;  
+    index=ipSubNet.find_first_of('.',index);  
+    ip.second=atoi(&ipSubNet[++index]);  
+    if(ip.second>255)  
+        return 0;  
+  
+    index++;  
+    index=ipSubNet.find_first_of('.',index);  
+    ip.three=atoi(&ipSubNet[++index]);  
+    if(ip.three>255)  
+        return 0;  
+  
+    index++;  
+    index=ipSubNet.find_first_of('.',index);  
+    ip.fouth=atoi(&ipSubNet[++index]);  
+    if(ip.fouth>255)  
+        return 0;  
+  
+    return 1;  
+}  
+  
+int main()  
+{  
+    string ipSubNet,ipAdd1,ipAdd2;  
+    IP subNet,ip1,ip2;  
+    while(cin>>ipSubNet>>ipAdd1>>ipAdd2)  
+    {  
+        if(judgeIp(ipSubNet,subNet)&&judgeIp(ipAdd1,ip1)&&judgeIp(ipAdd2,ip2))  
+        {  
+            ip1.first=ip1.first & subNet.first;  
+            ip1.second=ip1.first & subNet.second;  
+            ip1.second=ip1.first & subNet.second;  
+            ip1.fouth=ip1.first & subNet.fouth;  
+  
+            ip2.first=ip2.first & subNet.first;  
+            ip2.second=ip2.first & subNet.second;  
+            ip2.second=ip2.first & subNet.second;  
+            ip2.fouth=ip2.first & subNet.fouth;  
+  
+            if(ip1.first==ip2.first&&ip1.second==ip2.second&&ip1.three==ip2.three&&ip1.fouth==ip2.fouth)  
+                cout<<'0'<<endl;  
+            else  
+                cout<<'2'<<endl;  
+        }  
+        else  
+            cout<<'1'<<endl;  
+    }  
+    return 0;  
+}  

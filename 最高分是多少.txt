@@ -1,0 +1,56 @@
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    int N = 0, M = 0;
+    char chMode = 0;
+    int score[30001] = {0};
+
+    int tempMaxScore = 0;
+    int nIndex = 0;
+    int A = 0,B = 0;
+
+
+    while (cin >> N >> M)
+    {
+        nIndex = 1;
+        while(N--)
+        {
+            cin >> score[nIndex];
+            nIndex++;
+        }
+
+        while(M--)
+        {
+            cin >> chMode >> A >> B;
+            if(chMode == 'Q')
+            {
+
+                int start = (A < B) ? A:B;
+                int end = (A < B) ? B:A;
+                tempMaxScore = 0;
+                for(nIndex = start; nIndex <= end; nIndex++)
+                {
+                    if(score[nIndex] > tempMaxScore )
+                    {
+                        tempMaxScore = score[nIndex];
+                    }
+
+                }
+                cout << tempMaxScore << endl;
+            }
+            else if(chMode == 'U')
+            {
+                score[A] = B;
+            }
+        }
+    }
+
+
+
+    return 0;
+}

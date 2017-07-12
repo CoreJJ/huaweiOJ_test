@@ -1,0 +1,92 @@
+#include <stdio.h>  
+typedef char ElemType;  
+typedef struct BiTNode  
+{  
+    ElemType data;  
+    struct BiTNode *lchild;  
+    struct BiTNode *rchild;  
+} BiTNode,*BiTree;  
+  
+//先序建立二叉树方法一  
+void CreateBiTreeMethod1(BiTree *T);  
+//先序建立二叉树方法二  
+BiTree CreateBiTreeMethod2();  
+//先序遍历二叉树  
+void PreOrderTraverse(BiTree T);  
+//中序遍历  
+void InOrderTraverse(BiTree T);  
+//后序遍历  
+void PostOrderTraverse(BiTree T);  
+  
+int main()  
+{  
+    BiTree T = NULL;  
+    //CreateBiTreeMethod1(&T);  
+    //PreOrderTraverse(T);  
+    T = CreateBiTreeMethod2();  
+    PreOrderTraverse(T);  
+    return 0;  
+}  
+  
+//先序建立二叉树方法一  
+void CreateBiTreeMethod1(BiTree *T){  
+    char ch;  
+    scanf("%c",&ch);  
+    if('#' == ch){  
+        *T = NULL;  
+    }else{  
+        *T = (BiTree)malloc(sizeof(BiTNode));  
+        (*T)->data = ch;  
+        CreateBiTreeMethod1(&((*T)->lchild));  
+        CreateBiTreeMethod1(&((*T)->rchild));  
+    }  
+}  
+  
+//先序建立二叉树方法二  
+BiTree CreateBiTreeMethod2(){  
+    char ch;  
+    scanf("%c",&ch);  
+    BiTree T;  
+    if('#' == ch){  
+        T = NULL;  
+    }else{  
+        T = (BiTree)malloc(sizeof(BiTNode));  
+        T->data = ch;  
+        T->lchild = CreateBiTreeMethod2();  
+        T->rchild = CreateBiTreeMethod2();  
+    }  
+    return T;  
+}  
+  
+//先序遍历二叉树  
+void PreOrderTraverse(BiTree T)  
+{  
+    if(T)  
+    {  
+        printf("%c",T->data);  
+        PreOrderTraverse(T->lchild);  
+        PreOrderTraverse(T->rchild);  
+    }  
+}  
+  
+//中序遍历  
+void InOrderTraverse(BiTree T)  
+{  
+    if(T)  
+    {  
+        PreOrderTraverse(T->lchild);  
+        printf("%c",T->data);  
+        PreOrderTraverse(T->rchild);  
+    }  
+}  
+  
+//后序遍历  
+void PostOrderTraverse(BiTree T)  
+{  
+    if(T)  
+    {  
+        PreOrderTraverse(T->lchild);  
+        PreOrderTraverse(T->rchild);  
+        printf("%c",T->data);  
+    }  
+}  

@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main(void){
+    int n;
+ while (cin >> n){
+     int tmp;
+     vector<int> queue;
+     vector<int> dp_1(n, 1);
+     vector<int> dp_2(n, 1);
+     for (int i = 0; i < n; ++i){
+         cin >> tmp;
+         queue.push_back(tmp);
+     }
+     for (int i = 0; i < n; ++i){
+         for (int j = i - 1; j >= 0; --j){
+             if (queue[i] > queue[j] && dp_1[i] < dp_1[j] + 1)
+                 dp_1[i] = dp_1[j] + 1; 
+         }
+     }
+       std::reverse(queue.begin(), queue.end());
+     for (int i = 0; i < n; ++i){
+         for (int j = i - 1; j >= 0; --j){
+             if (queue[i] > queue[j] && dp_2[i] < dp_2[j] + 1)
+                  dp_2[i] = dp_2[j] + 1;
+         }
+     }
+      std::reverse(dp_2.begin(), dp_2.end());
+     int max = -1;
+      int sum;
+     for (int i = 0; i < n; ++i){
+         sum = dp_1[i] + dp_2[i];
+         if (sum > max){
+              max = sum;
+         }
+     }
+     cout << n - max + 1 << endl;
+ }
+          return 0;
+ }

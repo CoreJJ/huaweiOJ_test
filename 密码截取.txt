@@ -1,0 +1,86 @@
+#include<iostream>  
+#include<string>  
+using namespace std;  
+  
+void getMax1(string s,int &type1) //对称的中间有值   
+{  
+    int len = s.length();  
+    if(len==1)  
+         type1 = 1;  
+    else  
+    {  
+       for(int i=0;i<len;i++)  
+       {  
+        int j = i-1;  
+        int k = i+1;  
+        if(j>=0&&k<len&&s[j]==s[k])  
+        {  
+            int temp = 1;  
+            int left = j-1;  
+            int right = k+1;  
+            while(left>=0&&right<len)  
+            {  
+                 if(s[left]==s[right])  
+                 {  
+                    ++temp;  
+                    --left;  
+                    ++right;  
+                 }  
+                 else  
+                    break;  
+            }  
+            if(type1<2*temp+1)  
+                  type1 = 2*temp+1;  
+        }  
+       }  
+    }  
+}  
+  
+void getMax2(string s,int &type2) //直接对称   
+{  
+    int len = s.length();  
+    for(int i=0;i<len;i++)  
+    {  
+        int j = i+1;  
+        if(j<len && s[i] == s[j])  
+        {  
+             int temp = 1;  
+             int left = i-1;  
+             int right = j+1;  
+             while(left>=0&&right<len)  
+             {  
+                    if(s[left] == s[right])  
+                    {  
+                          ++temp;  
+                          --left;  
+                          ++right;  
+                    }  
+                    else  
+                       break;  
+             }  
+             if(type2<2*temp)  
+                  type2 = 2*temp;  
+        }             
+    }  
+}  
+  
+void getMaxLength(string &s)  
+{  
+     int type1 = 0,type2 = 0;     
+     getMax1(s,type1);  
+     getMax2(s,type2);  
+     if(type1>type2)  
+         cout<<type1<<endl;  
+     else  
+         cout<<type2<<endl;  
+}  
+  
+int main()  
+{  
+    string s;  
+    while(getline(cin,s))  
+    {  
+        getMaxLength(s);  
+    }   
+    return 0;  
+}  

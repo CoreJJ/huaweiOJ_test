@@ -1,0 +1,61 @@
+#include<iostream>  
+#include<fstream>  
+#include<string>  
+#include<cstring>  
+#include<algorithm>  
+#include<sstream>  
+using namespace std;  
+  
+void sort_0 (int data[],int n)  
+{  
+    int i,j,index;  
+    for(i=0;i<n;i++)  
+    {  
+        index=i;  
+        for(j=i+1;j<n;j++)  
+        {  
+            if(data[j] < data[index])  
+                index=j;  
+        }  
+        int temp=data[i];  
+        data[i]=data[index];  
+        data[index]=temp;  
+    }  
+}  
+  
+void sort_1(int data[],int n)  
+{  
+    int i,j,index;  
+    for(i=0;i<n;i++)  
+    {  
+        index=i;  
+        for(j=i+1;j<n;j++)  
+        {  
+            if(data[j] > data[index])  
+                index=j;  
+        }  
+        int temp=data[i];  
+        data[i]=data[index];  
+        data[index]=temp;  
+    }  
+}  
+  
+int main()  
+{  
+    int i,n,flag,data[1024];  
+    while(cin >> n)  
+    {  
+        for(i=0;i<n;i++)  
+            cin >> data[i];  
+        cin >> flag;  
+        if(flag==0)  
+            sort_0(data,n);  
+        else  
+            sort_1(data,n);  
+  
+        for(i=0;i<n-1;i++)  
+            cout<<data[i]<<" ";  
+        cout<<data[n-1]<<endl;  
+    }  
+    return 0;  
+} 

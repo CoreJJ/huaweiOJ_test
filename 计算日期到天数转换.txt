@@ -1,0 +1,22 @@
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+    int list[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };  
+    int y, m, d ;  
+    while(cin >> y >> m >> d)  
+    {  
+        int  leap, sum = 0;  
+    if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))  
+        leap = 1;  
+    else  
+        leap = 0;  
+    for (int i = 0; i < m-1; i++)  
+        sum += list[i];  
+    if (leap == 1)  
+        sum += 1;  
+    sum += d;  
+    cout << sum<<endl;  
+    }  
+    return 0;  
+}  

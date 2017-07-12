@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<string.h>
+#define M 100
+int main() {
+	char str[M] = { 0 };
+	int n = 0;
+	gets(str);
+	scanf("%d", &n);
+	int count = 0;
+	int max = 0;
+	int k = 0;
+	int i = 0;
+	int len = strlen(str);
+	for ( i = 0; i < len-1; i++)
+	{
+		count = 0;
+		for (int j = i; j < i+n; j++)
+		{
+			if (str[j] == 'G' || str[j] == 'C') {
+				count++;
+			}
+
+		}
+		if (count>max)
+		{
+			max = count;
+			k = i;
+		}
+
+	}
+	for ( i = k; i < k+n; i++)
+	{
+		printf("%c", str[i]);
+	}
+printf("\n");
+
+
+
+
+
+
+
+	return 0;
+}

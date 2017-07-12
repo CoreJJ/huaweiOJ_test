@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            String sh=sc.nextLine();
+            String ch=sc.nextLine();
+            System.out.println(isMatch(sh,ch));
+            
+        }
+        }
+    public static boolean isMatch(String sh,String ch){
+        for(int i=0;i<sh.length();i++){
+                if(!ch.contains(Character.toString(sh.charAt(i)))){
+                    return false; 
+                }    
+            }
+            return true;
+    }

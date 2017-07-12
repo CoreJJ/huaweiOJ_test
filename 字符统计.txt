@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<iostream>
+#include<string>
+using namespace std;
+int main(){
+    string input;
+    int str[128] = { 0 };
+    while (getline(cin, input)){
+        for (int i = 0; i < input.length(); i++){
+            str[input[i]]++;
+        }
+        int num = 0;
+        for (int i = 0; i < 128; i++){
+            if (str[i] != 0){
+                num++;
+            }
+        }
+        while (num--){
+            int max = 0;
+            int temp_i = 0;
+            for (int i = 0; i < 128; i++){
+                if (max < str[i]){
+                    max = str[i];
+                    temp_i = i;
+                }
+            }
+            str[temp_i] = 0;
+            cout << (char)temp_i;
+        }
+        cout << endl;
+ 
+    }
+    return 0;
+}

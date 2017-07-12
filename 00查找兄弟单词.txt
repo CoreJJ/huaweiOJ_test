@@ -1,0 +1,61 @@
+#include<iostream>  
+#include<string>  
+#include<algorithm>  
+using namespace std;  
+string result[1000];  
+string record[100];  
+  
+bool cmpbro(string a, string b,string bsort)  
+{  
+  
+    if (a != b)  
+    {  
+        sort(a.begin(), a.end());  
+  
+        if (a == bsort)  
+        {  
+            return true;  
+        }  
+    }  
+    return false;  
+}  
+  
+int main()  
+{  
+    int num = 0;  
+    int sum = 0;  
+    int count = 0;  
+    string in, inbro, innum, insort;  
+  
+    while(cin >> num){  
+    for (int i = 0; i<num; i++)  
+    {  
+        cin >> in;  
+        result[i] = in;  
+    }  
+      
+    //按字典排序  
+    sort(result, result + num);  
+  
+    cin >> inbro;  
+      
+    //将需要查找的字符串排序  
+    insort = inbro;  
+    sort(insort.begin(), insort.end());  
+  
+    for (int j = 0; j<num; j++)  
+    {  
+        if (cmpbro(result[j], inbro, insort))  
+        {  
+            record[count] = result[j];  
+            count++;  
+        }  
+    }  
+  
+    cout << count << endl;  
+    cin >> count;  
+    cout << record[count - 1];  
+    }
+    return 0;  
+}  
+

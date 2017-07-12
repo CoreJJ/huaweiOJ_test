@@ -1,0 +1,21 @@
+int nod(int a,int b)  
+{  
+    if(a%b!=0)  
+    {  
+        return nod(b,a%b);  
+    }  
+    else  
+    {  
+        return b;  
+    }  
+}  
+  
+int main()  
+{  
+    int a,b,s;  
+    scanf("%d",&a);
+    scanf("%d",&b);
+    s=a*b/nod(a,b);  
+    printf("%d\n",s);  
+    return 0;  
+}  

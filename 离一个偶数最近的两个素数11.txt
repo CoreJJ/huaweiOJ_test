@@ -1,0 +1,43 @@
+#include<stdio.h>  
+#include<math.h>  
+#include<stdlib.h>
+
+
+int prime(int a)
+{
+	for (int i = 2; i<a/2; i++)
+	{
+		if (a%i == 0)
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+int main()
+{
+	int num=0;
+	while(scanf("%d", &num)!=EOF){
+   int prime1 = 0, prime2 = 0, min = 10000;
+	if (num <= 5 || num>10000)
+	{
+		return -1;
+	}
+
+	for (int i = 2; i <= num / 2; i++)
+	{
+		if (prime(i)==1 && prime(num - i)==1)
+		{
+			if (abs(num - i - i) < min)
+			{
+				min = abs(num - i - i);
+				prime1 = i;
+				prime2 = num - i;
+			}
+		}
+	}
+	printf("%d\n", prime1);
+	printf("%d\n", prime2);
+    }
+	return 0;
+}
